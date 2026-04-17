@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Georgia", serif;
+  --font-accent: "Georgia", serif;
+
+  --color-sand: #E8DCC4;
+  --color-bone: #F7F2E8;
+  --color-seaglass: #8BA89A;
+  --color-seaglass-deep: #6B8A7C;
+  --color-clay: #A85E3E;
+  --color-driftwood: #7A6651;
+  --color-ink: #2D2A24;
+  --color-ink-soft: rgba(45, 42, 36, 0.8);
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+}
+
+@layer utilities {
+  .animate-shimmer {
+    animation: shimmer 2.5s infinite linear;
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-bone text-ink font-sans antialiased selection:bg-clay/20;
+    line-height: 1.6;
+  }
+}
+
+@utility reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@utility reveal-out {
+  opacity: 0;
+  transform: translateY(30px);
+}
