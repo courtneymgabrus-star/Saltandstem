@@ -293,11 +293,12 @@ const Story = () => {
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
           <Reveal>
-            <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-gradient-to-br from-seaglass to-seaglass-deep p-12 flex flex-col items-center justify-center">
-              {/* Grain texture simulation */}
-              <div className="absolute inset-0 opacity-10 mix-overlay pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\"%3E%3Cfilter id=\"n\"%3E%3CfeTurbulence baseFrequency=\"0.9\" numOctaves=\"2\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23n)\" opacity=\"0.4\"/%3E%3C/svg%3E')" }} />
-              
-              <Leaf size={140} className="text-bone/80 relative z-10" strokeWidth={1} />
+            <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-sand">
+              <ImageWithFallback 
+                src="https://i.postimg.cc/mZCd1z7B/94D7B217-649C-4BFB-9DDC-A7C99E58391B.png" 
+                alt="Made on the Island"
+                className="w-full h-full object-cover"
+              />
               <div className="absolute -bottom-6 -right-6 w-36 h-36 rounded-full bg-terracotta text-bone flex flex-col items-center justify-center text-center p-4 transform -rotate-12 shadow-2xl shadow-clay/30 z-20">
                 <span className="font-display text-2xl leading-none">Made</span>
                 <span className="text-[10px] uppercase tracking-widest mt-1">on island</span>
