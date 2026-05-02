@@ -49,7 +49,7 @@ const Navbar = () => {
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4 md:px-12 md:py-6 flex justify-between items-center ${
-          scrolled ? "bg-bone/95 backdrop-blur-md py-3 shadow-md border-b border-seaglass/20" : "bg-transparent border-b border-ink/5"
+          scrolled ? "bg-bone/95 backdrop-blur-md py-3 shadow-md border-b border-seaglass/20" : "bg-transparent border-b border-bone/10"
         }`}
       >
         {/* Vibrant Wave Decoration (visible when scrolled) */}
@@ -207,45 +207,26 @@ const Hero = () => {
     <section className="min-h-screen relative pt-32 pb-16 md:pt-48 md:pb-32 flex items-center overflow-hidden">
       {/* Ocean Visual Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-bone/80 via-bone/20 to-transparent z-10" />
+        <div className="absolute inset-0 bg-bone/50 z-10" />
         <motion.img 
           initial={{ scale: 1.05, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 2.5, ease: "easeOut" }}
-          src="https://images.unsplash.com/photo-1495954484750-af469fb2f9c5?auto=format&fit=crop&q=80&w=2000" 
-          alt="Coastal Sunrise"
+          transition={{ duration: 3, ease: "easeOut" }}
+          src="https://i.postimg.cc/J45nYxCk/IMG-4079.png" 
+          alt="Ocean Sunrise"
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover"
         />
-        {/* Animated Particles */}
-        <div className="absolute inset-0 pointer-events-none z-20">
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-seaglass rounded-full opacity-20"
-              animate={{ 
-                y: [-20, 800],
-                x: [Math.random() * 1000, Math.random() * 1000],
-                opacity: [0, 0.2, 0]
-              }}
-              transition={{ 
-                duration: 15 + Math.random() * 10,
-                repeat: Infinity,
-                delay: i * 2,
-                ease: "linear"
-              }}
-              style={{ left: `${Math.random() * 100}%`, top: "-10%" }}
-            />
-          ))}
-        </div>
+        {/* Subtle light wash and directional gradient for text read-ability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-bone/40 via-bone/10 to-transparent z-10" />
       </div>
       
-      <div className="container mx-auto px-6 md:px-12 relative z-10">
+      <div className="container mx-auto px-6 md:px-12 relative z-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="font-display italic text-2xl md:text-[24px] text-clay mb-4 inline-block"
+          className="font-display italic text-2xl md:text-[24px] text-clay mb-4 inline-block drop-shadow-sm"
         >
           a coastal hemp café
         </motion.div>
@@ -254,17 +235,19 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="font-display text-[72px] sm:text-[80px] md:text-[96px] leading-[0.9] font-light text-ink mb-12"
+          className="font-display text-[72px] sm:text-[80px] md:text-[96px] leading-[0.9] font-light text-ink mb-12 drop-shadow-sm"
         >
           Slow sips,
-          <span className="block italic text-seaglass md:ml-10">salt air.</span>
+          <span className="block italic text-seaglass-deep md:ml-10 drop-shadow-[0_2px_15px_rgba(255,255,255,0.9)] relative font-normal">
+            salt air.
+          </span>
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="text-lg md:text-[18px] text-ink-soft max-w-[480px] mb-12 leading-relaxed"
+          className="text-lg md:text-[18px] text-ink max-w-[480px] mb-12 leading-relaxed"
         >
           We craft plant-forward drinks and slow mornings on Hilton Head Island. Come barefoot, stay as long as you like.
         </motion.p>
@@ -296,11 +279,12 @@ const Story = () => {
             {/* Soft decorative background glow */}
             <div className="absolute -inset-2 bg-seaglass/10 rounded-[36px] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
             
-            <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-gradient-to-br from-seaglass to-seaglass-deep p-12 flex flex-col items-center justify-center shadow-xl shadow-ink/5 transition-all duration-700">
-              {/* Grain texture simulation */}
-              <div className="absolute inset-0 opacity-10 mix-overlay pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\"%3E%3Cfilter id=\"n\"%3E%3CfeTurbulence baseFrequency=\"0.9\" numOctaves=\"2\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23n)\" opacity=\"0.4\"/%3E%3C/svg%3E')" }} />
-              
-              <Leaf size={140} className="text-bone/80 relative z-10 transition-transform duration-700 group-hover:scale-110" strokeWidth={1} />
+            <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-sand shadow-xl shadow-ink/5 transition-all duration-700">
+              <ImageWithFallback 
+                src="https://i.postimg.cc/mZCd1z7B/94D7B217-649C-4BFB-9DDC-A7C99E58391B.png" 
+                alt="Made on the Island"
+                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+              />
               
               <div className="absolute -bottom-4 -right-4 w-32 h-32 rounded-full bg-clay text-bone flex flex-col items-center justify-center text-center p-4 transform -rotate-6 shadow-xl transition-all duration-700 group-hover:rotate-0 z-20">
                 <span className="font-display text-xl leading-none">Made</span>
@@ -462,7 +446,7 @@ const TheSpace = () => {
       desc: "A small, cozy nook with floor cushions and our shop corner. Books, tinctures, local goods, and ceramics for sale.",
       color: "bg-driftwood/80",
       accent: "text-bone",
-      image: "https://images.unsplash.com/photo-1596439673359-da71032993ad?auto=format&fit=crop&q=80&w=1000"
+      image: "https://i.postimg.cc/6QNM6B1z/IMG-4080.png"
     }
   ];
 
@@ -482,35 +466,34 @@ const TheSpace = () => {
             <div key={i}>
               <Reveal>
                 <motion.div 
-                  whileHover={{ y: -10 }}
-                  className={`relative aspect-[3/4] rounded-[24px] p-10 flex flex-col justify-end overflow-hidden group ${space.color}`}
+                  whileHover={{ y: -8 }}
+                  className={`relative aspect-[4/5] rounded-[24px] p-8 flex flex-col justify-end overflow-hidden group shadow-sm transition-shadow hover:shadow-xl ${space.color}`}
                 >
                   {space.image && (
-                    <ImageWithFallback 
-                      src={space.image} 
-                      alt={space.title}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-2000 group-hover:scale-110"
-                    />
+                    <div className="absolute inset-0 opacity-40 group-hover:opacity-60 transition-opacity duration-700">
+                      <ImageWithFallback 
+                        src={space.image} 
+                        alt={space.title}
+                        className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+                      />
+                    </div>
                   )}
                   
-                  {/* Gradient Overlay for Legibility - more subtle and focused on the bottom */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/10 to-transparent group-hover:from-ink/40 transition-colors duration-700" />
+                  {/* Subtle Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent z-10" />
                   
-                  <div className="absolute top-0 right-0 p-8 z-20">
-                    <span className="font-accent text-2xl text-bone/60">{space.num}</span>
+                  <div className="absolute top-0 right-0 p-6 z-20">
+                    <span className="font-accent text-xl text-bone/50 tracking-tighter">{space.num}</span>
                   </div>
                   
-                  <div className="relative z-10">
-                    <h4 className="font-display text-2xl text-bone mb-4 leading-tight">
-                      {space.title.split(' ')[0]} <span className="italic opacity-80">{space.title.split(' ').slice(1).join(' ')}</span>
+                  <div className="relative z-20">
+                    <h4 className="font-display text-2xl text-bone mb-2 leading-tight">
+                      {space.title.split(' ')[0]} <span className="italic opacity-90">{space.title.split(' ').slice(1).join(' ')}</span>
                     </h4>
-                    <p className="text-sm text-bone/90 leading-relaxed font-light">
+                    <p className="text-sm text-bone/80 leading-relaxed font-light line-clamp-3">
                       {space.desc}
                     </p>
                   </div>
-
-                  {/* Texture overlay */}
-                  <div className="absolute inset-0 opacity-20 mix-overlay pointer-events-none z-20" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\"%3E%3Cfilter id=\"n\"%3E%3CfeTurbulence baseFrequency=\"0.9\" numOctaves=\"2\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23n)\" opacity=\"0.35\"/%3E%3C/svg%3E')" }} />
                 </motion.div>
               </Reveal>
             </div>
@@ -899,6 +882,88 @@ const Visit = () => {
   );
 };
 
+const Testimonials = () => {
+  const testimonials = [
+    {
+      quote: "The most peaceful morning on the island. That Tide & Tonic is magic. I come here every time I need to reset.",
+      author: "Sarah L.",
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200"
+    },
+    {
+      quote: "Dog friendly, barefoot friendly, and incredible matcha. A weekly ritual for us after our sunrise beach walk.",
+      author: "Marcus J.",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=200"
+    },
+    {
+      quote: "Finally, a spot on HHI that feels modern yet laid back. The mood here is exactly what the island needed.",
+      author: "Elena R.",
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200"
+    }
+  ];
+
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActive((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [testimonials.length]);
+
+  return (
+    <section className="py-24 bg-bone/80 border-y border-ink/5 overflow-hidden">
+      <div className="container mx-auto px-6 md:px-12">
+        <Reveal className="flex justify-center">
+          <div className="font-display italic text-2xl text-clay mb-4 text-center">Island stories</div>
+        </Reveal>
+
+        <div className="max-w-4xl mx-auto relative h-[300px] md:h-[240px] flex items-center justify-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={active}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="text-center space-y-8 flex flex-col items-center"
+            >
+              <blockquote className="font-display text-2xl md:text-4xl font-light text-ink leading-tight max-w-2xl italic">
+                "{testimonials[active].quote}"
+              </blockquote>
+              
+              <div className="flex items-center gap-4">
+                <div className="w-10 h-10 rounded-full overflow-hidden border border-clay/20 shadow-sm">
+                  <img 
+                    src={testimonials[active].image} 
+                    alt={testimonials[active].author}
+                    className="w-full h-full object-cover" 
+                  />
+                </div>
+                <cite className="font-accent text-xl text-clay not-italic">
+                  — {testimonials[active].author}
+                </cite>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        <div className="flex justify-center gap-3 mt-8">
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              className={`w-2 h-2 rounded-full transition-all duration-500 ${
+                active === i ? "bg-clay w-8" : "bg-ink/10 hover:bg-ink/20"
+              }`}
+              aria-label={`Go to testimonial ${i + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 const Newsletter = () => {
   const [submitted, setSubmitted] = useState(false);
 
@@ -1002,6 +1067,7 @@ export default function App() {
       <Gallery />
       <Events />
       <Visit />
+      <Testimonials />
       <Newsletter />
       <Footer />
     </div>
