@@ -207,12 +207,12 @@ const Hero = () => {
     <section className="min-h-screen relative pt-32 pb-16 md:pt-48 md:pb-32 flex items-center overflow-hidden">
       {/* Ocean Visual Background */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-bone via-bone/90 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-bone/80 via-bone/20 to-transparent z-10" />
         <motion.img 
-          initial={{ scale: 1.1, opacity: 0 }}
+          initial={{ scale: 1.05, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 2, ease: "easeOut" }}
-          src="https://images.unsplash.com/photo-1471922694854-ff1b63b20054?auto=format&fit=crop&q=80&w=2000" 
+          transition={{ duration: 2.5, ease: "easeOut" }}
+          src="https://images.unsplash.com/photo-1495954484750-af469fb2f9c5?auto=format&fit=crop&q=80&w=2000" 
           alt="Coastal Sunrise"
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover"
@@ -293,25 +293,23 @@ const Story = () => {
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
           <Reveal className="relative group">
-            {/* Decorative background element */}
-            <div className="absolute -inset-4 bg-seaglass/10 rounded-[40px] transform rotate-3 animate-pulse opacity-50 group-hover:rotate-0 transition-transform duration-700" />
+            {/* Soft decorative background glow */}
+            <div className="absolute -inset-2 bg-seaglass/10 rounded-[36px] blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
             
-            <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-sand shadow-2xl transition-all duration-700 group-hover:scale-[1.02] group-hover:-rotate-1">
-              <ImageWithFallback 
-                src="https://i.postimg.cc/mZCd1z7B/94D7B217-649C-4BFB-9DDC-A7C99E58391B.png" 
-                alt="Made on the Island"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-ink/5 group-hover:bg-transparent transition-colors duration-700" />
+            <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-gradient-to-br from-seaglass to-seaglass-deep p-12 flex flex-col items-center justify-center shadow-xl shadow-ink/5 transition-all duration-700">
+              {/* Grain texture simulation */}
+              <div className="absolute inset-0 opacity-10 mix-overlay pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\"%3E%3Cfilter id=\"n\"%3E%3CfeTurbulence baseFrequency=\"0.9\" numOctaves=\"2\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23n)\" opacity=\"0.4\"/%3E%3C/svg%3E')" }} />
               
-              <div className="absolute -bottom-6 -right-6 w-36 h-36 rounded-full bg-clay text-bone flex flex-col items-center justify-center text-center p-4 transform -rotate-12 shadow-2xl transition-transform duration-700 group-hover:rotate-0 z-20">
-                <span className="font-display text-2xl leading-none">Made</span>
-                <span className="text-[10px] uppercase tracking-widest mt-1 font-medium">on island</span>
-                <Leaf size={20} className="mt-2 opacity-60" />
+              <Leaf size={140} className="text-bone/80 relative z-10 transition-transform duration-700 group-hover:scale-110" strokeWidth={1} />
+              
+              <div className="absolute -bottom-4 -right-4 w-32 h-32 rounded-full bg-clay text-bone flex flex-col items-center justify-center text-center p-4 transform -rotate-6 shadow-xl transition-all duration-700 group-hover:rotate-0 z-20">
+                <span className="font-display text-xl leading-none">Made</span>
+                <span className="text-[9px] uppercase tracking-widest mt-1 font-medium">on island</span>
+                <Leaf size={16} className="mt-2 opacity-80" />
               </div>
             </div>
             
-            {/* Floating leaf accent */}
+            {/* Subtle floating leaf accent */}
             <motion.div 
               animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -446,22 +444,25 @@ const TheSpace = () => {
       num: "01",
       title: "The Main Room",
       desc: "Linen curtains, skylights, low music. Built for morning lingerers and afternoon readers. Always dog-friendly.",
-      color: "bg-coral/90",
-      accent: "text-bone"
+      color: "bg-coral/80",
+      accent: "text-bone",
+      image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=1000"
     },
     {
       num: "02",
       title: "The Back Deck",
       desc: "Under the live oaks. String lights. Best spot for sunset sodas and Sunday brunch with friends.",
-      color: "bg-seaglass/90",
-      accent: "text-bone"
+      color: "bg-seaglass/80",
+      accent: "text-bone",
+      image: "https://i.postimg.cc/28BBShWF/IMG-4078.png"
     },
     {
       num: "03",
       title: "The Sunroom",
       desc: "A small, cozy nook with floor cushions and our shop corner. Books, tinctures, local goods, and ceramics for sale.",
-      color: "bg-driftwood/90",
-      accent: "text-bone"
+      color: "bg-driftwood/80",
+      accent: "text-bone",
+      image: "https://images.unsplash.com/photo-1596439673359-da71032993ad?auto=format&fit=crop&q=80&w=1000"
     }
   ];
 
@@ -484,7 +485,18 @@ const TheSpace = () => {
                   whileHover={{ y: -10 }}
                   className={`relative aspect-[3/4] rounded-[24px] p-10 flex flex-col justify-end overflow-hidden group ${space.color}`}
                 >
-                  <div className="absolute top-0 right-0 p-8">
+                  {space.image && (
+                    <ImageWithFallback 
+                      src={space.image} 
+                      alt={space.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-2000 group-hover:scale-110"
+                    />
+                  )}
+                  
+                  {/* Gradient Overlay for Legibility - more subtle and focused on the bottom */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/10 to-transparent group-hover:from-ink/40 transition-colors duration-700" />
+                  
+                  <div className="absolute top-0 right-0 p-8 z-20">
                     <span className="font-accent text-2xl text-bone/60">{space.num}</span>
                   </div>
                   
@@ -498,7 +510,7 @@ const TheSpace = () => {
                   </div>
 
                   {/* Texture overlay */}
-                  <div className="absolute inset-0 opacity-20 mix-overlay pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\"%3E%3Cfilter id=\"n\"%3E%3CfeTurbulence baseFrequency=\"0.9\" numOctaves=\"2\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23n)\" opacity=\"0.35\"/%3E%3C/svg%3E')" }} />
+                  <div className="absolute inset-0 opacity-20 mix-overlay pointer-events-none z-20" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg xmlns=\"http://www.w3.org/2000/svg\" width=\"120\" height=\"120\"%3E%3Cfilter id=\"n\"%3E%3CfeTurbulence baseFrequency=\"0.9\" numOctaves=\"2\"/%3E%3C/filter%3E%3Crect width=\"100%25\" height=\"100%25\" filter=\"url(%23n)\" opacity=\"0.35\"/%3E%3C/svg%3E')" }} />
                 </motion.div>
               </Reveal>
             </div>
