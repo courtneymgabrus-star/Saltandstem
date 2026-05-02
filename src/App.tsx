@@ -210,12 +210,12 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-r from-bone via-bone/90 to-transparent z-10" />
         <motion.img 
           initial={{ scale: 1.1, opacity: 0 }}
-          animate={{ scale: 1, opacity: 0.3 }}
+          animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 2, ease: "easeOut" }}
-          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=2000" 
-          alt="Ocean Shore"
+          src="https://images.unsplash.com/photo-1471922694854-ff1b63b20054?auto=format&fit=crop&q=80&w=2000" 
+          alt="Coastal Sunrise"
           referrerPolicy="no-referrer"
-          className="w-full h-full object-cover grayscale opacity-40 mix-blend-multiply"
+          className="w-full h-full object-cover"
         />
         {/* Animated Particles */}
         <div className="absolute inset-0 pointer-events-none z-20">
@@ -292,18 +292,33 @@ const Story = () => {
     <section id="story" className="py-24 md:py-40 bg-bone">
       <div className="container mx-auto px-6 md:px-12">
         <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
-          <Reveal>
-            <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-sand">
+          <Reveal className="relative group">
+            {/* Decorative background element */}
+            <div className="absolute -inset-4 bg-seaglass/10 rounded-[40px] transform rotate-3 animate-pulse opacity-50 group-hover:rotate-0 transition-transform duration-700" />
+            
+            <div className="relative aspect-[4/5] rounded-[32px] overflow-hidden bg-sand shadow-2xl transition-all duration-700 group-hover:scale-[1.02] group-hover:-rotate-1">
               <ImageWithFallback 
                 src="https://i.postimg.cc/mZCd1z7B/94D7B217-649C-4BFB-9DDC-A7C99E58391B.png" 
                 alt="Made on the Island"
                 className="w-full h-full object-cover"
               />
-              <div className="absolute -bottom-6 -right-6 w-36 h-36 rounded-full bg-terracotta text-bone flex flex-col items-center justify-center text-center p-4 transform -rotate-12 shadow-2xl shadow-clay/30 z-20">
+              <div className="absolute inset-0 bg-ink/5 group-hover:bg-transparent transition-colors duration-700" />
+              
+              <div className="absolute -bottom-6 -right-6 w-36 h-36 rounded-full bg-clay text-bone flex flex-col items-center justify-center text-center p-4 transform -rotate-12 shadow-2xl transition-transform duration-700 group-hover:rotate-0 z-20">
                 <span className="font-display text-2xl leading-none">Made</span>
-                <span className="text-[10px] uppercase tracking-widest mt-1">on island</span>
+                <span className="text-[10px] uppercase tracking-widest mt-1 font-medium">on island</span>
+                <Leaf size={20} className="mt-2 opacity-60" />
               </div>
             </div>
+            
+            {/* Floating leaf accent */}
+            <motion.div 
+              animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-10 -left-10 text-seaglass/30 z-0 pointer-events-none"
+            >
+              <Leaf size={100} strokeWidth={1} />
+            </motion.div>
           </Reveal>
 
           <Reveal>
@@ -717,21 +732,21 @@ const Gallery = () => {
           />
         </Reveal>
 
-        <div className="grid grid-cols-3 gap-1 md:gap-4 mt-16 px-1 md:px-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mt-16">
           {images.map((img, i) => (
-            <div key={i} className="aspect-square relative overflow-hidden group cursor-pointer" onClick={() => setSelectedImage(img)}>
-              <Reveal className="h-full">
-                <div className="relative h-full w-full overflow-hidden bg-sand">
+            <div key={i} className="flex flex-col group cursor-pointer" onClick={() => setSelectedImage(img)}>
+              <Reveal>
+                <div className="aspect-square relative overflow-hidden bg-sand rounded-2xl shadow-sm">
                   <ImageWithFallback 
                     src={img.src} 
                     alt={img.caption}
                     referrerPolicy="no-referrer"
-                    className="w-full h-full transition-transform duration-1000 ease-out group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110"
                   />
                   
                   {/* Enhanced Hover Overlay */}
                   <div className="absolute inset-0 bg-ink/40 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col items-center justify-center p-4">
-                    <div className="flex items-center gap-6 mb-4">
+                    <div className="flex items-center gap-6">
                       <div className="flex items-center text-bone font-medium gap-1.5 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
                         <Heart size={20} fill="currentColor" />
                         <span className="text-sm">24</span>
@@ -741,13 +756,13 @@ const Gallery = () => {
                         <span className="text-sm">4</span>
                       </div>
                     </div>
-                    
-                    <div className="w-8 h-px bg-bone/30 mb-4 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-700 delay-300" />
-                    
-                    <p className="text-bone text-center text-xs font-medium tracking-wider uppercase opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 delay-400">
-                      {img.caption}
-                    </p>
                   </div>
+                </div>
+                
+                <div className="mt-4 px-2 text-center md:text-left">
+                  <p className="text-ink text-sm font-display italic transition-colors duration-300 group-hover:text-clay">
+                    {img.caption}
+                  </p>
                 </div>
               </Reveal>
             </div>
